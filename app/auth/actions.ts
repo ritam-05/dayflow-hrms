@@ -17,14 +17,23 @@ export async function login(formData: FormData) {
     return { error: error.message }
   }
 
+  if (!data.user) {
+    return { error: 'Authentication failed. Please try again.' }
+  }
+
   // Fetch role to determine redirect
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from('profiles')
     .select('role')
     .eq('id', data.user.id)
     .single()
 
-  if (profile?.role === 'HR') {
+  // Fallback if profile doesn't exist yet for some reason
+  if (profileError || !profile) {
+    redirect('/employee/dashboard')
+  }
+
+  if (profile.role === 'HR') {
     redirect('/admin/dashboard')
   } else {
     redirect('/employee/dashboard')
