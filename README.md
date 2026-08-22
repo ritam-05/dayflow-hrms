@@ -65,6 +65,7 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ADMIN_SECRET=dayflowadmin2026
+
 4. Start the Development Server
 npm run dev
 
