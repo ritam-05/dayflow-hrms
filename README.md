@@ -47,34 +47,6 @@ Dayflow is a modern HRMS featuring strict Role-Based Access Control (RBAC), real
 - **Deployment:** Vercel
 
 ---
-
-## 📂 Project Structure
-
-```text
-dayflow/
-├── app/
-│   ├── (auth)/             # Authentication routes (Login, Signup)
-│   ├── admin/              # HR-exclusive routes
-│   │   ├── attendance/     # Global attendance logs
-│   │   ├── dashboard/      # HR metrics overview
-│   │   ├── employees/      # Company-wide personnel directory
-│   │   ├── leave/          # Leave request approval queue
-│   │   └── payroll/        # Salary structure management
-│   ├── employee/           # Employee-exclusive routes
-│   │   ├── attendance/     # Personal clock-in/out
-│   │   ├── dashboard/      # Personal overview & alerts
-│   │   ├── leave/          # Leave application form & history
-│   │   ├── payroll/        # Salary history & slips
-│   │   └── profile/        # Personal details view
-│   ├── auth/               # Server actions for Supabase Auth handling
-│   ├── layout.tsx          # Root layout & global font configuration
-│   └── globals.css         # Tailwind directives & custom scrollbars
-├── components/
-│   ├── layout/             # Application shell, responsive sidebar, headers
-│   └── ui/                 # Reusable shadcn/ui primitives
-├── lib/
-│   └── supabase/           # Supabase SSR client configurations
-└── middleware.ts           # Edge middleware for route protection & redirects
 🚀 Local Development Setup
 
 Follow these steps to run Dayflow on your local machine.
@@ -122,3 +94,30 @@ Automated PDF Generation: Using react-pdf to dynamically generate and email actu
 Bulk Onboarding: A CSV upload pipeline for HR to mass-import employee profiles during company onboarding.
 Shift Scheduling: A calendar interface for assigning specific working hours and shifts to different departments.
 Email Notifications: Webhook integrations with Resend/SendGrid to notify employees when their leave is approved/rejected.
+
+## 📂 Project Structure
+```text
+dayflow/
+├── app/
+│   ├── (auth)/             # Authentication routes (Login, Signup)
+│   ├── admin/              # HR-exclusive routes
+│   │   ├── attendance/     # Global attendance logs
+│   │   ├── dashboard/      # HR metrics overview
+│   │   ├── employees/      # Company-wide personnel directory
+│   │   ├── leave/          # Leave request approval queue
+│   │   └── payroll/        # Salary structure management
+│   ├── employee/           # Employee-exclusive routes
+│   │   ├── attendance/     # Personal clock-in/out
+│   │   ├── dashboard/      # Personal overview & alerts
+│   │   ├── leave/          # Leave application form & history
+│   │   ├── payroll/        # Salary history & slips
+│   │   └── profile/        # Personal details view
+│   ├── auth/               # Server actions for Supabase Auth handling
+│   ├── layout.tsx          # Root layout & global font configuration
+│   └── globals.css         # Tailwind directives & custom scrollbars
+├── components/
+│   ├── layout/             # Application shell, responsive sidebar, headers
+│   └── ui/                 # Reusable shadcn/ui primitives
+├── lib/
+│   └── supabase/           # Supabase SSR client configurations
+└── middleware.ts           # Edge middleware for route protection & redirects
