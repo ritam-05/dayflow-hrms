@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner"; // <-- Add this import
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // We force dark mode by default for that premium SaaS feel
     <html lang="en" className="dark">
       <body className={`${inter.className} bg-background text-foreground min-h-screen antialiased`}>
         {children}
+        <Toaster theme="dark" /> {/* <-- Add this component */}
       </body>
     </html>
   );
