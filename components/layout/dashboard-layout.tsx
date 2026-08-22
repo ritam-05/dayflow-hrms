@@ -20,7 +20,7 @@ import { Bell, Menu, LayoutDashboard, User, Clock, CalendarOff, Banknote, Users,
 export type NavItem = {
   title: string
   href: string
-  icon: any
+  iconName: 'Dashboard' | 'User' | 'Attendance' | 'Leave' | 'Payroll' | 'Employees' | 'Reports'
 }
 
 interface DashboardLayoutProps {
@@ -29,6 +29,16 @@ interface DashboardLayoutProps {
   userName: string
   userEmail: string
   role: 'Employee' | 'HR'
+}
+
+const iconMap = {
+  Dashboard: LayoutDashboard,
+  User: User,
+  Attendance: Clock,
+  Leave: CalendarOff,
+  Payroll: Banknote,
+  Employees: Users,
+  Reports: BarChart3,
 }
 
 export function DashboardLayout({ children, navItems, userName, userEmail, role }: DashboardLayoutProps) {
@@ -42,7 +52,7 @@ export function DashboardLayout({ children, navItems, userName, userEmail, role 
   const NavLinks = () => (
     <nav className="flex flex-col gap-2 p-4">
       {navItems.map((item) => {
-        const Icon = item.icon
+        const IconComponent = iconMap[item.iconName] || LayoutDashboard
         const isActive = pathname === item.href
         return (
           <Link key={item.href} href={item.href} onClick={() => setIsMobileMenuOpen(false)}>
@@ -53,7 +63,7 @@ export function DashboardLayout({ children, navItems, userName, userEmail, role 
                   : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-900'
               }`}
             >
-              <Icon className="w-5 h-5" />
+              <IconComponent className="w-5 h-5" />
               {item.title}
             </span>
           </Link>

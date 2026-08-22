@@ -7,21 +7,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
-import { toast } from 'sonner'
 
 export default function SignupPage() {
-  const [loading, setLoading] = useState(false)
   const [role, setRole] = useState('Employee')
-
-  async function handleSubmit(formData: FormData) {
-    setLoading(true)
-    formData.append('role', role)
-    const result = await signup(formData)
-    if (result?.error) {
-      toast.error(result.error)
-      setLoading(false)
-    }
-  }
 
   return (
     <Card className="border-zinc-800 bg-zinc-900/50 backdrop-blur-xl">
@@ -30,7 +18,9 @@ export default function SignupPage() {
         <CardDescription>Create your Dayflow account.</CardDescription>
       </CardHeader>
       <CardContent>
-        <form action={handleSubmit} className="space-y-4">
+        {/* Pass action directly to let Next.js handle the server redirect cleanly */}
+        {/* @ts-ignore */}
+        <form action={signup} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="employee_id">Employee ID</Label>
@@ -56,11 +46,11 @@ export default function SignupPage() {
             <Label>Role</Label>
             <div className="flex gap-4">
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="role_select" value="Employee" checked={role === 'Employee'} onChange={() => setRole('Employee')} className="text-violet-600 accent-violet-600" />
+                <input type="radio" name="role" value="Employee" checked={role === 'Employee'} onChange={() => setRole('Employee')} className="text-violet-600 accent-violet-600" />
                 <span className="text-sm">Employee</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="role_select" value="HR" checked={role === 'HR'} onChange={() => setRole('HR')} className="text-violet-600 accent-violet-600" />
+                <input type="radio" name="role" value="HR" checked={role === 'HR'} onChange={() => setRole('HR')} className="text-violet-600 accent-violet-600" />
                 <span className="text-sm">HR / Admin</span>
               </label>
             </div>
@@ -73,8 +63,8 @@ export default function SignupPage() {
             </div>
           )}
 
-          <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700 text-white" disabled={loading}>
-            {loading ? 'Creating Account...' : 'Create Account'}
+          <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700 text-white">
+            Create Account
           </Button>
         </form>
       </CardContent>
