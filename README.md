@@ -7,7 +7,7 @@ Dayflow is a modern HRMS featuring strict Role-Based Access Control (RBAC), real
 
 ---
 
-## ✨ Core Features (Hackathon Rubric Compliant)
+## ✨ Core Features 
 
 ### 1. Role-Based Access Control & Authentication
 
@@ -29,11 +29,6 @@ Dayflow is a modern HRMS featuring strict Role-Based Access Control (RBAC), real
 
 - **Employee Self-Service:** Submit requests specifying leave type (Paid, Sick, Unpaid), date ranges, and optional remarks, alongside a personal request history table.
 - **Admin Adjudication:** Centralized queue for HR to review, approve, or reject pending leave applications organization-wide.
-
-### 5. Payroll & Profile Control
-
-- **Profiles:** Employees can view their registered data, while Admins have access to the complete employee directory.
-- **Payroll Mockup:** Read-only compensation history and mock PDF payslip views for employees. Administrators have a salary structure control interface to manage organizational payouts.
 
 ---
 
