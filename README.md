@@ -3,89 +3,180 @@
 <p align="center">
   <strong>Every workday, perfectly aligned.</strong>
   <br />
-  A modern HRMS for secure, streamlined workforce operations.
-  <br /><br />
-  <a href="https://github.com/ritam-05/dayflow-hrms"><img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js 16" /></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-Ready-3178C6?logo=typescript&logoColor=white" alt="TypeScript" /></a>
-  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" /></a>
-  <a href="https://supabase.com/"><img src="https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?logo=supabase&logoColor=white" alt="Supabase" /></a>
-  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deployed_on-Vercel-black?logo=vercel" alt="Vercel" /></a>
+  A centralized platform for modern workforce management.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Architecture-Role--Based%20Access-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/Authentication-Supabase-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/Database-PostgreSQL-blue?style=flat-square" />
 </p>
 
 ---
 
 ## Overview
 
-**Dayflow** is a role-based Human Resource Management System designed to simplify everyday HR operations through dedicated employee and HR administrator portals.
+**Dayflow** is a modern Human Resource Management System (HRMS) designed to digitize and streamline essential workforce management operations through a unified, role-based platform.
 
-The application brings together authentication, attendance tracking, leave management, employee records, and payroll views in one interface. Its architecture uses Supabase for authentication and data storage, with access boundaries enforced through application-level route protection and PostgreSQL Row Level Security.
+Built with Next.js, TypeScript, and Supabase, Dayflow brings employee administration, attendance tracking, leave management, and payroll operations into a centralized environment.
 
-## Table of Contents
+The platform follows a role-oriented architecture with dedicated interfaces for Employees and HR Administrators. Each role operates within its own access-controlled environment, ensuring that users interact only with the functionality and information relevant to their responsibilities.
 
-- [Core Features](#core-features)
-- [Technology Stack](#technology-stack)
-- [Application Architecture](#application-architecture)
-- [Local Development](#local-development)
-- [Deployment](#deployment)
-- [Planned Enhancements](#planned-enhancements)
-- [Project Structure](#project-structure)
+Rather than treating HR operations as disconnected modules, Dayflow brings these workflows together into a consistent application experience.
+
+### Project Objectives
+
+- Centralize employee information and essential HR operations.
+- Simplify daily attendance recording and workforce monitoring.
+- Digitize leave application, review, and approval workflows.
+- Provide employees with self-service access to their records.
+- Establish secure role-based access boundaries between employees and administrators.
+- Build a maintainable and extensible architecture suitable for future enhancements.
 
 ---
 
 ## Core Features
 
+Dayflow is organized around five primary functional areas.
+
 ### 1. Authentication & Role-Based Access Control
 
-- **Dual portals:** Separate routing and user experiences for Employee and HR / Admin roles.
-- **Protected HR onboarding:** HR account creation requires a server-side `ADMIN_SECRET` to help prevent privilege escalation.
-- **Persistent sessions:** Supabase Auth session handling with HTTP-only cookies and Next.js request routing guards.
+A dedicated authentication and authorization layer separates employee functionality from privileged administrative operations.
 
-### 2. Role-Specific Dashboards
+**Key Capabilities**
 
-| Employee Dashboard | HR Dashboard |
-| --- | --- |
-| Quick-access Profile, Attendance, and Leave metrics | Organization-level overview metrics |
-| Current attendance status indicators | Employee counts |
-| Recent activity and notification feed | Pending leave request tracking |
+- **Dual-Portal Architecture:** Separate application experiences and protected routes for `Employee` and `HR / Admin` roles.
+- **Role-Based Authorization:** Access restrictions based on authenticated user roles.
+- **Protected Administrator Onboarding:** HR account creation requires a server-side `ADMIN_SECRET`, preventing unauthorized administrative registration.
+- **Session Persistence:** Supabase Authentication maintains authenticated sessions through secure HTTP-only cookies.
+- **Route Protection:** Next.js middleware-based routing guards manage access to protected application routes.
+
+### 2. Interactive Dashboards
+
+Role-specific dashboards provide users with a centralized overview of relevant workforce information.
+
+**Employee Dashboard**
+- Personal profile overview.
+- Attendance statistics and current-day status.
+- Leave balance and request-related information.
+- Quick access to frequently used HR operations.
+- Recent activity and notification feed.
+
+**HR Administrator Dashboard**
+- Organization-wide employee statistics.
+- Workforce attendance overview.
+- Pending leave application summaries.
+- Centralized access to administrative operations.
 
 ### 3. Attendance Management
 
-- **Employee view:** Daily check-in and check-out with timestamp logging and current-day status indicators.
-- **Admin view:** Company-wide daily attendance logs for workforce monitoring.
+The attendance module provides a structured workflow for recording and monitoring employee working hours.
+
+**Employee Capabilities**
+- Daily check-in and check-out functionality.
+- Timestamp-based attendance recording.
+- Current-day attendance status indicators.
+- Personal attendance information.
+
+**Administrator Capabilities**
+- Centralized access to company-wide attendance records.
+- Organization-wide daily attendance monitoring.
+- Workforce activity visibility through administrative interfaces.
 
 ### 4. Leave & Time-Off Management
 
-- **Employee self-service:** Submit leave requests with a leave type (Paid, Sick, or Unpaid), date range, and optional remarks.
-- **Request history:** Employees can review their submitted leave applications.
-- **HR review pipeline:** Administrators can review, approve, or reject pending leave requests across the organization.
+Dayflow implements a structured leave application and approval pipeline connecting employee requests with HR administrative decisions.
 
-### 5. Employee Profiles & Payroll
+**Employee Capabilities**
+- Submit leave applications through a self-service interface.
+- Select leave categories: Paid, Sick, and Unpaid.
+- Specify leave start and end dates.
+- Include optional remarks with applications.
+- Access previously submitted requests and their statuses.
 
-- **Profiles:** Employees can view their registered information; administrators can access the employee directory.
-- **Employee payroll view:** Read-only compensation history and mock PDF payslip views.
-- **HR payroll controls:** An administrative interface for managing organizational salary structures.
+**HR Administrator Capabilities**
+- View organization-wide leave applications.
+- Review pending employee requests.
+- Approve or reject leave applications.
+- Manage leave requests through a centralized administrative interface.
+
+### 5. Payroll & Employee Profile Management
+
+The payroll and profile modules provide access to employee records and compensation-related information.
+
+**Employee Capabilities**
+- View registered personal information.
+- Access individual profile details.
+- View compensation history.
+- Access mock PDF payslip views.
+
+**HR Administrator Capabilities**
+- Access the organization-wide employee directory.
+- View employee information.
+- Manage salary structures through administrative controls.
 
 ---
 
 ## Technology Stack
 
-| Layer | Technology |
-| --- | --- |
-| Framework | [Next.js 16](https://nextjs.org/) — App Router, Server Actions, Turbopack |
-| Language | TypeScript |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com/) |
-| UI Components | [shadcn/ui](https://ui.shadcn.com/) |
-| Icons | Lucide React |
-| Database | [Supabase](https://supabase.com/) — PostgreSQL |
-| Authentication | Supabase Auth |
-| Data security | PostgreSQL Row Level Security (RLS) |
-| Deployment | [Vercel](https://vercel.com/) |
+Dayflow uses a modern full-stack JavaScript architecture, combining a server-rendered application framework, strongly typed development, reusable UI components, and a managed PostgreSQL backend.
 
----
+| Layer | Technology | Purpose |
+|---|---|---|
+| Frontend Framework | Next.js 16 | Application framework and routing |
+| Programming Language | TypeScript | Type safety and maintainable development |
+| Application Architecture | App Router | File-system-based application routing |
+| Server Logic | Server Actions | Server-side application operations |
+| Styling | Tailwind CSS v4 | Utility-first styling |
+| UI Components | shadcn/ui | Reusable interface components |
+| Icon Library | Lucide React | Interface iconography |
+| Authentication | Supabase Auth | User authentication and session management |
+| Database | PostgreSQL | Relational data persistence |
+| Database Platform | Supabase | Managed database and authentication infrastructure |
+| Security | Row Level Security | Database-level access control |
+| Build Tooling | Turbopack | Development and build tooling |
+| Deployment | Vercel | Application hosting and deployment |
 
-## Application Architecture
+### Architectural Approach
 
-The application separates authentication and session handling from the employee and HR workflows. Both portals use a shared dashboard shell and communicate with Supabase through the server-side data client.
+The application follows a modular architecture that separates authentication, employee operations, administrative workflows, and data access.
+
+**1. Presentation Layer**
+
+- Role-specific dashboards and application interfaces.
+- Shared layout components and navigation.
+- Reusable UI components.
+
+**2. Application Logic Layer**
+
+- Server Actions for authentication and business operations.
+- Employee-specific operations and workflows.
+- Administrative operations with privileged access.
+
+**3. Authentication & Authorization Layer**
+
+- Supabase authentication.
+- Session management through HTTP-only cookies.
+- Middleware-based route protection.
+- Role-specific access restrictions.
+
+**4. Data Layer**
+
+- Supabase server-side client.
+- PostgreSQL database.
+- Row Level Security policies.
+- Server-side data access.
+
+### Application Architecture
 
 ```mermaid
 flowchart TD
@@ -179,88 +270,146 @@ class node_app_root toneNeutral
 
 ---
 
-## Local Development
+## Security & Access Control
 
-Follow these steps to run Dayflow locally.
+Security is an important consideration in Dayflow's application architecture. The platform combines authentication, application-level route protection, and database-level access controls.
+
+### Authentication
+
+Supabase Auth handles user authentication and session management. Authenticated sessions are maintained using secure HTTP-only cookies.
+
+### Role-Based Access
+
+The application separates employee and administrator experiences through role-specific routes and protected layouts.
+
+### Server-Side Operations
+
+Server Actions handle sensitive application operations and provide a centralized location for server-side business logic.
+
+### Database Security
+
+PostgreSQL Row Level Security (RLS) provides database-level access control, allowing data access policies to be enforced at the database layer.
+
+### Administrative Registration
+
+Administrator account creation requires a server-side secret configured through the `ADMIN_SECRET` environment variable.
+
+---
+
+## Local Development Setup
+
+Follow the instructions below to configure and run Dayflow in a local development environment.
 
 ### Prerequisites
 
-- Node.js and npm
-- A Supabase project
-- Git
+Ensure the following tools and services are available:
 
-### 1. Clone the repository
+- Node.js
+- npm
+- Git
+- A Supabase account and project
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/ritam-05/dayflow-hrms.git
 cd dayflow-hrms
 ```
 
-### 2. Install dependencies
+### 2. Install Dependencies
+
+Install the project dependencies using npm.
 
 ```bash
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Configure Environment Variables
 
-Create a `.env.local` file in the project root and add your Supabase project credentials and the HR onboarding secret:
+Create a `.env.local` file in the root directory of the project.
+
+Configure the following environment variables:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-ADMIN_SECRET=replace_with_a_strong_private_secret
+
+ADMIN_SECRET=your_secure_admin_secret
 ```
 
-> **Security note:** Keep `ADMIN_SECRET` private. Do not commit `.env.local` or expose this value through client-side code. Use a strong, unique secret in each environment.
+**Environment Variable Reference**
 
-### 4. Start the development server
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | URL of the Supabase project |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase public/anonymous client key |
+| `ADMIN_SECRET` | Server-side secret required for administrator account creation |
+
+**Important Configuration Notes**
+
+- Obtain the Supabase URL and client key from your Supabase project settings.
+- Replace all placeholder values with valid credentials.
+- Use a strong, unique value for `ADMIN_SECRET`.
+- Never expose server-side secrets through client-side code.
+- Do not commit `.env.local` or other files containing secrets to version control.
+
+### 4. Start the Development Server
+
+Run the following command:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser. The application will direct unauthenticated visitors to the login screen.
+Open the application in your browser:
+
+[http://localhost:3000](http://localhost:3000)
+
+The application will automatically redirect unauthenticated users to the login interface.
 
 ---
 
 ## Deployment
 
-Dayflow is configured for deployment on [Vercel](https://vercel.com/).
+### Production Deployment with Vercel
 
-1. Push the project to a GitHub repository.
-2. Sign in to Vercel and select **Add New Project**.
-3. Import the Dayflow repository.
-4. Add the following environment variables in the project settings:
+Dayflow is configured for deployment on Vercel, with Supabase providing the database and authentication infrastructure.
 
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `ADMIN_SECRET`
+**Deployment Procedure**
 
-5. Deploy the project.
+1. Push the application code to a GitHub repository.
+2. Log in to [Vercel](https://vercel.com/).
+3. Select **Add New Project**.
+4. Import the Dayflow GitHub repository.
+5. Configure the required environment variables under the project settings.
 
-Vercel will build and deploy the application, then provide a production URL.
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ADMIN_SECRET=your_secure_admin_secret
+   ```
 
----
+6. Initiate the deployment by selecting **Deploy**.
+7. Once the build completes successfully, access the application through the production URL generated by Vercel.
 
-## Planned Enhancements
+**Deployment Dependencies**
 
-The current MVP provides the core HR workflows. The following enhancements are planned for future iterations:
-
-| Enhancement | Planned capability |
-| --- | --- |
-| **Analytics dashboard** | Recharts visualizations for attendance trends and leave distributions. |
-| **Automated PDF generation** | Generate and email actual payroll slips using react-pdf. |
-| **Bulk onboarding** | CSV-based employee import for organization-wide onboarding. |
-| **Shift scheduling** | Calendar-based assignment of employee shifts and working hours. |
-| **Email notifications** | Resend / SendGrid webhook integrations for leave approval and rejection updates. |
+| Service | Responsibility |
+|---|---|
+| Vercel | Application hosting and deployment |
+| Supabase Auth | User authentication and session infrastructure |
+| Supabase PostgreSQL | Application data storage |
+| Supabase RLS | Database-level access policies |
 
 ---
 
 ## Project Structure
 
+The application follows a modular directory structure that separates authentication, employee workflows, administrative functionality, reusable components, and backend integrations.
+
 ```text
-dayflow-hrms/
+dayflow/
 ├── app/
 │   ├── (auth)/             # Authentication routes (Login, Signup)
 │   ├── admin/              # HR-exclusive routes
@@ -271,25 +420,56 @@ dayflow-hrms/
 │   │   └── payroll/        # Salary structure management
 │   ├── employee/           # Employee-exclusive routes
 │   │   ├── attendance/     # Personal clock-in/out
-│   │   ├── dashboard/      # Personal overview & alerts
-│   │   ├── leave/          # Leave application form & history
-│   │   ├── payroll/        # Salary history & slips
+│   │   ├── dashboard/      # Personal overview and alerts
+│   │   ├── leave/          # Leave application form and history
+│   │   ├── payroll/        # Salary history and payslips
 │   │   └── profile/        # Personal details view
 │   ├── auth/               # Server actions for Supabase Auth handling
-│   ├── layout.tsx          # Root layout & global font configuration
-│   └── globals.css         # Tailwind directives & custom scrollbars
+│   ├── layout.tsx          # Root layout and global font configuration
+│   └── globals.css         # Tailwind directives and custom scrollbars
 ├── components/
 │   ├── layout/             # Application shell, responsive sidebar, headers
 │   └── ui/                 # Reusable shadcn/ui primitives
 ├── lib/
 │   └── supabase/           # Supabase SSR client configurations
-└── middleware.ts           # Edge middleware for route protection & redirects
+└── middleware.ts           # Edge middleware for route protection and redirects
 ```
 
 ---
 
+## Future Enhancements
+
+The current implementation establishes the core HRMS workflows. The following enhancements represent potential extensions to improve automation, reporting, and organizational capabilities.
+
+| Enhancement | Description | Proposed Technology |
+|---|---|---|
+| Advanced Analytics | Interactive visualizations for attendance trends, workforce statistics, and leave distributions. | Recharts |
+| Automated Payslip Generation | Generate downloadable PDF payslips and deliver them to employees through email. | react-pdf |
+| Bulk Employee Onboarding | CSV-based employee import pipeline for large-scale organizational onboarding. | CSV Processing |
+| Shift Scheduling | Calendar-based shift allocation and working-hour management across departments. | Calendar Integration |
+| Email Notifications | Automated notifications for leave approvals, rejections, and important HR updates. | Resend / SendGrid |
+
+These enhancements are intended to extend the existing modular architecture without disrupting the core employee and administrator workflows.
+
+---
+
+## Project Information
+
+| Attribute | Details |
+|---|---|
+| Project Name | Dayflow |
+| Category | Human Resource Management System |
+| Application Type | Full-Stack Web Application |
+| Architecture | Role-Based Multi-Portal Application |
+| Frontend | Next.js, TypeScript, Tailwind CSS |
+| Backend Infrastructure | Supabase |
+| Database | PostgreSQL |
+| Deployment Platform | Vercel |
+
+---
+
 <p align="center">
-  Built with Next.js, TypeScript, Tailwind CSS, and Supabase.
+  <strong>Dayflow</strong>
   <br />
-  <a href="https://github.com/ritam-05/dayflow-hrms">View repository</a>
+  Every workday, perfectly aligned.
 </p>
